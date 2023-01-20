@@ -54,6 +54,14 @@ export const ItemStyle = styled.li`
       background: var(--second-color);
     }
   }
+
+  .hoverBorderActive {
+    border-color: #e52e7a;
+    & .hoverActive {
+      background: #e52e7a;
+    }
+  }
+
   .hoverBorder {
     border-color: #2ea8e5;
     & .hover {

@@ -24,10 +24,14 @@ import {
 
 const Main = () => {
   const [isActive, setIsActive] = useState(false);
+  const cards = document.querySelectorAll(ItemStyle);
+  console.log(cards);
 
   const handleMouseLeave = e => {
     // console.log(e.currentTarget);
-    e.currentTarget.classList.add('hoverBorder');
+    isActive
+      ? e.currentTarget.classList.add('hoverBorderActive')
+      : e.currentTarget.classList.add('hoverBorder');
   };
 
   const handleClick = e => {
@@ -41,11 +45,8 @@ const Main = () => {
     <section className={styles.mainSection}>
       <Title>Ты сегодня кормил кота?</Title>
       <ListStyle>
-        <ItemStyle>
-          <ContentContainer
-            onMouseLeave={handleMouseLeave}
-            onClick={handleClick}
-          >
+        <ItemStyle id="1">
+          <ContentContainer onMouseOut={handleMouseLeave} onClick={handleClick}>
             <InfoContainer>
               <Text>Сказочное заморское яство</Text>
               <NameProduct>Нямушка</NameProduct>
@@ -66,15 +67,14 @@ const Main = () => {
           ) : (
             <TextLinkForBy>
               Чего сидишь? Порадуй котэ,
-              <LinkForBy className="hoverLink">купи.</LinkForBy>
+              <LinkForBy onClick={handleClick} className="hoverLink">
+                купи.
+              </LinkForBy>
             </TextLinkForBy>
           )}
         </ItemStyle>
-        <ItemStyle>
-          <ContentContainer
-            onMouseLeave={handleMouseLeave}
-            onClick={handleClick}
-          >
+        <ItemStyle id="2">
+          <ContentContainer onMouseOut={handleMouseLeave} onClick={handleClick}>
             <InfoContainer>
               <Text>Сказочное заморское яство</Text>
               <NameProduct>Нямушка</NameProduct>
@@ -91,16 +91,21 @@ const Main = () => {
             </WeightContainer>
             <ImgCat src={ImageCat} alt="cat" width="400" />
           </ContentContainer>
-          <TextLinkForBy>
-            Чего сидишь? Порадуй котэ,
-            <LinkForBy className="hoverLink">купи.</LinkForBy>
-          </TextLinkForBy>
+          {isActive ? (
+            <TextLinkForBy>
+              Головы щучьи с чесноком да свежайшая сёмгушка.
+            </TextLinkForBy>
+          ) : (
+            <TextLinkForBy>
+              Чего сидишь? Порадуй котэ,
+              <LinkForBy onClick={handleClick} className="hoverLink">
+                купи.
+              </LinkForBy>
+            </TextLinkForBy>
+          )}
         </ItemStyle>
-        <ItemStyle>
-          <ContentContainer
-            onMouseLeave={handleMouseLeave}
-            onClick={handleClick}
-          >
+        <ItemStyle id="3">
+          <ContentContainer onMouseOut={handleMouseLeave} onClick={handleClick}>
             <InfoContainer>
               <Text>Сказочное заморское яство</Text>
               <NameProduct>Нямушка</NameProduct>
@@ -117,12 +122,16 @@ const Main = () => {
             </WeightContainer>
             <ImgCat src={ImageCat} alt="cat" width="400" />
           </ContentContainer>
-          <TextLinkForBy>
-            Чего сидишь? Порадуй котэ,
-            <LinkForBy className="hoverLink" onClick={handleClick}>
-              купи.
-            </LinkForBy>
-          </TextLinkForBy>
+          {isActive ? (
+            <TextLinkForBy>Филе из цыплят с трюфелями в бульоне.</TextLinkForBy>
+          ) : (
+            <TextLinkForBy>
+              Чего сидишь? Порадуй котэ,
+              <LinkForBy onClick={handleClick} className="hoverLink">
+                купи.
+              </LinkForBy>
+            </TextLinkForBy>
+          )}
         </ItemStyle>
       </ListStyle>
     </section>
